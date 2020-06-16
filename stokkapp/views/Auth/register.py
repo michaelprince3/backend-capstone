@@ -20,7 +20,7 @@ def register (request):
         
     template = 'registration/register.html'
         
-    return render(request, template, {'form': f})
+    return redirect(reverse('stokkapp:home'))
     
 # def register(request):
 #     if request.method == 'POST':

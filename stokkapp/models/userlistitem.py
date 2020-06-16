@@ -7,7 +7,7 @@ from .shoppinglist import ShoppingList
 class UserListItem (models.Model):
 
     item_id = models.ForeignKey(Item, on_delete=models.CASCADE)
-    shopping_list_id = models.ForeignKey(ShoppingList, on_delete=models.CASCADE)
+    shopping_list = models.ForeignKey(ShoppingList, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = ("UserListItem")

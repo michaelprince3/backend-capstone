@@ -7,7 +7,7 @@ class ShoppingList (models.Model):
 
     name = models.CharField(max_length=50)
     created_date = models.DateTimeField(auto_now_add= True)
-    user_id = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
 
     class Meta:
         verbose_name = ("ShoppingList")
