@@ -8,26 +8,29 @@
 {% block content %}
     <h1>Items</h1>
 
-    <dialog class="infoDialog">
+    {% comment %} <dialog class="infoDialog">
         <div class="infoDialog__message"></div>
         <button class="closeDialog">Close</button>
-    </dialog>
+    </dialog> {% endcomment %}
 
     {% comment %} <a href="{% url 'libraryapp:book_form' %}">Add Book to Inventory</a> {% endcomment %}
 
-    <ol class="books">
-    {% for book in all_books %}
-        <li class="book">
-            <a class="book__title" href="{% url 'libraryapp:book' book.id %}"> {{ book.title }}</a>
-            <div class="book__description">
-                by {{book.author}} published in {{book.year_published}}
+    <ol class="items">
+    <a href="{% url 'stokkapp:user_item_form' %}">
+    <button id="new_item">New Item</button>
+    </a>
+    {% for user_item in all_items %}
+        <li class="item">
+            {% comment %} <a class="item__name" href="{% url 'libraryapp:book' book.id %}"> {{ book.title }}</a> {% endcomment %}
+            <div class="item__description">
+                {{user_item.item.name}} size {{user_item.size}}
             </div>
-            <button id="detail--{{ book.id }}">Details</button>
+            <button id="detail--{{ item.id }}">Details</button>
         </li>
     {% endfor %}
     </ol>
 {% endblock %}
 
-{% block scripts %}
-    <script src="{% static 'scripts/books.js' %}"></script>
-{% endblock %}
+{% comment %} {{% block scripts %}
+    <script src="{% static 'scripts/books.js' %}"></script> 
+{% endblock %}  {% endcomment %}
