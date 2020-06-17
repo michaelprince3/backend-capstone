@@ -23,10 +23,27 @@ def user_item_details(request, user_item_id):
         form_data = request.POST
 
         if (
-            "actual method" in form_data
+            "actual_method" in form_data
             and form_data["actual_method"] == "DELETE"
         ):
 
             user_item.delete()
 
             return redirect(reverse('stokkapp:home'))
+
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "PUT"
+        ):
+            
+            user_item.size=form_data['size']
+            user_item.quantity=form_data['quantity']
+            user_item.expiration=form_data['expiration']
+            user_item.category_id=form_data['category']
+            user_item.item_id=form_data['item']
+            user_item.location_id=form_data['location']
+            user_item.store_id=form_data['store']
+            
+            user_item.save()
+            
+            return redirect(reverse('stokkapp:detail', args=[user_item.id] ))

@@ -12,6 +12,8 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('', home, name='home'),
     path('form/', user_item_form, name='user_item_form'),
+    path('newform', new_user_item_form, name='new_user_item_form'),
+    path('item/<int:user_item_id>/edit', user_item_edit_form, name='user_item_edit_form'),
     path('items', user_item_list, name='user_item_list'),
     path('detail/<int:user_item_id>', user_item_details, name='detail')
 

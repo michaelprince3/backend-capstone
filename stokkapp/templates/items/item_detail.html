@@ -19,7 +19,7 @@
         <button>Delete</button>
     </form>
 
-    <form action="{% url 'stokkapp:user_item_form' %}" method="GET">
+    <form action="{% url 'stokkapp:user_item_edit_form' user_item.id %}" method="GET">
         {% csrf_token %}
         <button>Edit</button>
     </form>
