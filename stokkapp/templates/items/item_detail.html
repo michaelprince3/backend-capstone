@@ -3,13 +3,14 @@
 {% block content %}
     <section id="user_item-details">
         <h1>{{ user_item.item.name }}</h1>
-        <h2>By {{ user_item.author }}</h2>
+        <h5>{{ user_item.item.description }}</h5>
 
-        <div>Size {{ user_item.size }}</div>
-        <div>Quantity {{ user_item.quantity }}</div>
-        <div>Expiration Date: {{ user_item.expiration}}</div>
-        <div>Located in the {{ user_item.location.name }}</div>
-        <div>Purchased at {{ user_item.store.name }}</div>
+        <div>Size: {{ user_item.size }}</div>
+        <div>Quantity: {{ user_item.quantity }}</div>
+        <div>Expiration Date: {{ user_item.expiration }}</div>
+        <div>Category: {{ user_item.category.name }}</div>
+        <div>Located in the: {{ user_item.location.name }}</div>
+        <div>Purchased at: {{ user_item.store.name }}</div>
     </section>
 
     <form action="{% url 'stokkapp:user_item_list' %}" method="POST">

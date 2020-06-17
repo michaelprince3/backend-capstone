@@ -3,9 +3,27 @@
 {% block content %}
     <h1>Add an Item</h1>
 
-    <form action="{% url 'stokkapp:user_item_list'  %}" method="post">
+    <form class = "item_form" action="{% url 'stokkapp:user_item_list'  %}" method="post">
     {% csrf_token %}
+        {% if book.id is not None %}
+        <h4>Add a new Item</h4>
+        <input class = "makeItNew" type = "hidden" value="false">
+        <input type="hidden" name="new_item" value="True">
         <fieldset>
+            <label for="size">Size: </label>
+            <input id="size" type="text" name="size" value="{{item.size}}">
+        </fieldset>
+        <fieldset>
+            <label for="size">Size: </label>
+            <input id="size" type="text" name="size" value="{{item.size}}">
+        </fieldset>
+        <fieldset>
+            <label for="size">Size: </label>
+            <input id="size" type="text" name="size" value="{{item.size}}">
+        </fieldset>
+        {% else %}
+        <fieldset>
+            <input type ="button" id = "new_item" value = "New Item">
             <label for="item">Item: </label>
             <select id="item" type="text" name="item">
                     {% for item in all_items %}
@@ -13,6 +31,7 @@
                     {% endfor %}
             </select>
         </fieldset>
+        {% endif %}
         <fieldset>
             <label for="size">Size: </label>
             <input id="size" type="text" name="size" value="{{item.size}}">
@@ -51,6 +70,11 @@
         </fieldset>
         <input type="submit" value="Submit" />
     </form>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/form.js' %}"></script>
+{% endblock %}
     {% comment %} {% if book.id is not None %}
         <form action="{% url 'libraryapp:book' book.id %}" method="post">
           <input type="hidden" name="actual_method" value="PUT">
@@ -89,4 +113,3 @@
 
       <input type="submit" value="Submit" />
     </form> {% endcomment %}
-{% endblock %}
