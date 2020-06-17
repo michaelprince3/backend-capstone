@@ -21,11 +21,13 @@
     </a>
     {% for user_item in all_items %}
         <li class="item">
-            {% comment %} <a class="item__name" href="{% url 'libraryapp:book' book.id %}"> {{ book.title }}</a> {% endcomment %}
+            
             <div class="item__description">
                 {{user_item.item.name}} size {{user_item.size}}
             </div>
-            <button id="detail--{{ item.id }}">Details</button>
+            <a class="item__name" href="{% url 'stokkapp:detail' user_item.id %}">
+            <button id="detail--{{ user_item.id }}">Details</button>
+            </a>
         </li>
     {% endfor %}
     </ol>
