@@ -9,13 +9,13 @@ from .store import Store
 
 class UserItem (models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     item = models.ForeignKey(Item, on_delete=models.DO_NOTHING)
     size = models.CharField(max_length=50)
     quantity = models.IntegerField()
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+    store = models.ForeignKey(Store, on_delete=models.DO_NOTHING)
     expiration = models.DateTimeField(auto_now_add= False)
     purchase_date = models.DateTimeField(auto_now_add= True)
 

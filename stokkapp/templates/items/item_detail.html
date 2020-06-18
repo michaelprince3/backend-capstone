@@ -13,7 +13,7 @@
         <div>Purchased at: {{ user_item.store.name }}</div>
     </section>
 
-    <form action="{% url 'stokkapp:user_item_list' %}" method="POST">
+    <form action="{% url 'stokkapp:detail' user_item.id %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="actual_method" value="DELETE">
         <button>Delete</button>
