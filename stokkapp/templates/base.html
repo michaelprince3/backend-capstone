@@ -15,9 +15,6 @@
     <meta charset="utf-8">
     <title>Stokk</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'styles/base.css' %}" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{% static 'styles/login.css' %}" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{% static 'styles/comp_modal.css' %}" type="text/css" media="screen" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -26,9 +23,6 @@
 </head>
 
 <body>
-
-
-    
 
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #16a085;">
         <a class="navbar-brand" href="#">STOKK</a>
@@ -66,9 +60,6 @@
                     <a class="nav-link" href="{% url 'stokkapp:login' %}">Login</a>
                 </li>
                 {% endif %}
-                {% comment %} <li class="nav-item">
-                    <a class="nav-link" href="{% url '#' %}">Django Admin</a>
-                </li> {% endcomment %}
             </ul>
         </div>
     </nav>
