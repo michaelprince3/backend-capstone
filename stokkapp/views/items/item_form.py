@@ -3,8 +3,10 @@ from django.contrib.auth.decorators import login_required
 from stokkapp.models import UserItem, Item, Location, Category, Store
 from .item_detail import get_user_item
 
+
 def get_user_item(user_item_id):
     return UserItem.objects.get(pk=user_item_id)
+
 
 def get_items():
     return Item.objects.all()
@@ -66,8 +68,7 @@ def user_item_edit_form(request, user_item_id):
         locations = get_locations()
         categories = get_categories()
         stores = get_stores()
-        
-        
+
         template = 'items/item_form.html'
         context = {
             'user_item': user_item,

@@ -21,9 +21,11 @@
     </a>
     {% for user_item in all_items %}
         <li class="item">
-            
             <div class="item__description">
                 {{user_item.item.name}} size {{user_item.size}}
+            </div>
+            <div class="item__image">
+                <img src={{user_item.item.image}}>
             </div>
             <a class="item__name" href="{% url 'stokkapp:detail' user_item.id %}">
             <button id="detail--{{ user_item.id }}">Details</button>
