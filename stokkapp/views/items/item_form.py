@@ -66,7 +66,8 @@ def user_item_edit_form(request, user_item_id):
         locations = get_locations()
         categories = get_categories()
         stores = get_stores()
-
+        
+        
         template = 'items/item_form.html'
         context = {
             'user_item': user_item,

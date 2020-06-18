@@ -7,32 +7,33 @@
         {% if user_item.id is not None %}
         <h2>Edit Item</h2>
             <form action="{% url 'stokkapp:detail' user_item.id %}" method="post">
+            {% csrf_token %}
             <input type="hidden" name="actual_method" value="PUT">
             <fieldset>
                     <label for="item">Item: </label>
                     <select id="item" type="text" name="item">
                             {% for item in all_items %}
-                                <option  value="{{ item.id }}">{{ item.name }}</option>
+                                <option {% if item.id == user_item.item_id%}selected{% endif %}  value="{{ item.id }}">{{ item.name }}</option>
                             {% endfor %}
                     </select>
             </fieldset>
             <fieldset>
             <label for="size">Size: </label>
-            <input id="size" type="text" name="size" value="{{item.size}}">
+            <input id="size" type="text" name="size" value="{{user_item.size}}">
         </fieldset>
         <fieldset>
             <label for="quantity">Quantity: </label>
-            <input id="quantity" type="number" name="quantity" value="{{item.quantity}}">
+            <input id="quantity" type="number" name="quantity" value="{{user_item.quantity}}">
         </fieldset>
         <fieldset>
             <label for="expiration">Expiration Date: </label>
-            <input id="expiration" type="date" name="expiration" value="{{item.expiration}}">
+            <input id="expiration" type="date" name="expiration" value="{{user_item.expiration}}">
         </fieldset>
         <fieldset>
             <label for="category">Category: </label>
             <select id="category" type="text" name="category">
                 {% for category in all_categories %}
-                    <option {%  value="{{ category.id }}">{{ category.name }}</option>
+                    <option {% if category.id == user_item.category_id%}selected{% endif %}  value="{{ user_item.category_id }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
         </fieldset>
@@ -40,7 +41,7 @@
             <label for="location">Location: </label>
             <select id="location" type="text" name="location">
                 {% for location in all_locations %}
-                    <option {%  value="{{ location.id }}">{{ location.name }}</option>
+                    <option {% if location.id == user_item.location_id%}selected{% endif %} value="{{ location.id }}">{{ location.name }}</option>
                 {% endfor %}
             </select>
         </fieldset>
@@ -48,7 +49,7 @@
             <label for="store">Store: </label>
             <select id="store" type="text" name="store">
                 {% for store in all_stores %}
-                    <option {%  value="{{ store.id }}">{{ store.name }}</option>
+                    <option {% if store.id == user_item.store_id%}selected{% endif %}  value="{{ store.id }}">{{ store.name }}</option>
                 {% endfor %}
             </select>
         </fieldset>
