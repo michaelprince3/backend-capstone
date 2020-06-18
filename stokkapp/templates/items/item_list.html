@@ -8,13 +8,6 @@
 {% block content %}
     <h1>Items</h1>
 
-    {% comment %} <dialog class="infoDialog">
-        <div class="infoDialog__message"></div>
-        <button class="closeDialog">Close</button>
-    </dialog> {% endcomment %}
-
-    {% comment %} <a href="{% url 'libraryapp:book_form' %}">Add Book to Inventory</a> {% endcomment %}
-
     <ol class="items">
     <a href="{% url 'stokkapp:user_item_form' %}">
     <button id="new_item">New Item</button>
@@ -35,6 +28,3 @@
     </ol>
 {% endblock %}
 
-{% comment %} {{% block scripts %}
-    <script src="{% static 'scripts/books.js' %}"></script> 
-{% endblock %}  {% endcomment %}

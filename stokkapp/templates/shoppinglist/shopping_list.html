@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'shopping_list.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <h1>{{user_shopping_list.name}}'s shopping list</h1>
+
+
+
+
+    <ol class="shopping_list">
+    {% comment %} <a href="{% url 'stokkapp:user_item_form' %}">
+    <button id="new_item">New Item</button>
+    </a> {% endcomment %}
+    {% for list_item in user_list_items %}
+        <li class="item">
+            <div class="item__description">
+                {{list_item.item.name}}
+            </div>
+            {% comment %} <a class="item__name" href="{% url 'stokkapp:detail' user_item.id %}">
+            <button id="detail--{{ user_item.id }}">Details</button>
+            </a> {% endcomment %}
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}

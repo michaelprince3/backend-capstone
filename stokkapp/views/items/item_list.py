@@ -8,7 +8,7 @@ import time
 
 def user_item_list(request):
     if request.method == 'GET':
-        all_items = UserItem.objects.all()
+        all_items = UserItem.objects.filter(user_id=request.user.id)
 
         for user_item in all_items:
             user_item.Item = Item.objects.filter(id=user_item.item_id)

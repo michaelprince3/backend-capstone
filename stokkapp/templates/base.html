@@ -32,6 +32,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'stokkapp:home' %}"> Home</a>
                 </li>
@@ -39,7 +40,7 @@
                     <a class="nav-link" href="{% url 'stokkapp:user_item_list' %}">Items</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'stokkapp:home' %}">Shopping List</a>
+                    <a class="nav-link" href="{% url 'stokkapp:shoppinglist' %}">Shopping List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'stokkapp:home' %}">Another Link</a>
@@ -47,17 +48,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'stokkapp:home' %}">Another Link</a>
                 </li>
-                
-                
-            </ul>
-            <ul class="navbar-nav mr-auto">
-            {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'stokkapp:logout' %}"> Logout</a>
                 </li>
+                
+            </ul>
+            <ul class="navbar-nav mr-auto">
+
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'stokkapp:login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'stokkapp:register' %}">Register</a>
                 </li>
                 {% endif %}
             </ul>

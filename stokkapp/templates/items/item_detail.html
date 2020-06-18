@@ -23,4 +23,8 @@
         {% csrf_token %}
         <button>Edit</button>
     </form>
+    <form action="{% url 'stokkapp:shopping_list_item' user_item.id %}" method="GET">
+        {% csrf_token %}
+        <button>Add to list</button>
+    </form>
 {% endblock %}

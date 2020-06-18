@@ -18,9 +18,9 @@ def register (request):
     else:
         f = UserCreationForm()
         
-    template = 'registration/register.html'
+        template = 'registration/register.html'
         
-    return redirect(reverse('stokkapp:home'))
+        return redirect(reverse('stokkapp:home'))
     
 # def register(request):
 #     if request.method == 'POST':
