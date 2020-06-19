@@ -24,7 +24,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #16a085;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #e76f51;">
         <a class="navbar-brand" href="#">STOKK</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,16 +37,19 @@
                     <a class="nav-link" href="{% url 'stokkapp:home' %}"> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'stokkapp:user_item_list' %}">Items</a>
+                    <a class="nav-link" href="{% url 'stokkapp:user_item_list' %}">All Items</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'stokkapp:home' %}">Location</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'stokkapp:home' %}">Category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'stokkapp:home' %}">Store</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'stokkapp:shoppinglist' %}">Shopping List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'stokkapp:home' %}">Another Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'stokkapp:home' %}">Another Link</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'stokkapp:logout' %}"> Logout</a>

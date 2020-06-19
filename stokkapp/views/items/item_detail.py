@@ -29,7 +29,7 @@ def user_item_details(request, user_item_id):
 
             user_item.delete()
 
-            return redirect(reverse('stokkapp:home'))
+            return redirect(reverse('stokkapp:user_item_list'))
 
         if (
             "actual_method" in form_data
