@@ -18,6 +18,7 @@ urlpatterns = [
     path('items', user_item_list, name='user_item_list'),
     path('detail/<int:user_item_id>', user_item_details, name='detail'),
     path('shoppinglist/', shopping_list, name='shoppinglist'),
-    path('listitem/<int:user_item_id>', shopping_list_item, name='shopping_list_item')
+    path('listitem/<int:user_item_id>', shopping_list_item, name='shopping_list_item'),
+    path('locations', location_list, name='locations')
 
 ]
