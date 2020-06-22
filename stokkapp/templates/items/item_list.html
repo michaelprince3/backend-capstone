@@ -2,23 +2,17 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'item.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/item.css' %}" />
 {% endblock %}
 
 {% block content %}
     <h1>Items</h1>
 
-    {% comment %} <dialog class="infoDialog">
-        <div class="infoDialog__message"></div>
-        <button class="closeDialog">Close</button>
-    </dialog> {% endcomment %}
-
-    {% comment %} <a href="{% url 'libraryapp:book_form' %}">Add Book to Inventory</a> {% endcomment %}
-
     <ol class="items">
     <a href="{% url 'stokkapp:user_item_form' %}">
     <button id="new_item">New Item</button>
     </a>
+    <h3>These Items are in Stokk</h3>
     {% for user_item in all_items %}
         <li class="item">
             <div class="item__description">
@@ -33,8 +27,21 @@
         </li>
     {% endfor %}
     </ol>
+    <h3>These items are out</h3>
+    <ol>
+    {% for zero_item in zero_items %}
+        <li class="item">
+            <div class="item__description">
+                {{zero_item.item.name}} size {{zero_item.size}} quantity {{zero_item.quantity}}
+            </div>
+            <div class="item__image">
+                <img src={{zero_item.item.image}}>
+            </div>
+            <a class="item__name" href="{% url 'stokkapp:detail' zero_item.id %}">
+            <button id="detail--{{ zero_item.id }}">Details</button>
+            </a>
+        </li>
+    {% endfor %}
+    </ol>
 {% endblock %}
 
-{% comment %} {{% block scripts %}
-    <script src="{% static 'scripts/books.js' %}"></script> 
-{% endblock %}  {% endcomment %}

@@ -5,17 +5,22 @@ import datetime
 
 import time
 
-
+@login_required
 def user_item_list(request):
     if request.method == 'GET':
-        all_items = UserItem.objects.all()
+        all_items = UserItem.objects.filter(user_id=request.user.id).exclude(quantity=0)
+        zero_items = UserItem.objects.filter(user_id=request.user.id, quantity=0)
 
         for user_item in all_items:
             user_item.Item = Item.objects.filter(id=user_item.item_id)
 
+        for zero_item in zero_items:
+            zero_item.Item = Item.objects.filter(id=user_item.item_id)
+        
         template = 'items/item_list.html'
         context = {
-            'all_items': all_items
+            'all_items': all_items,
+            'zero_items': zero_items
         }
 
         return render(request, template, context)

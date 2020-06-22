@@ -13,35 +13,36 @@
                     <label for="item">Item: </label>
                     <select id="item" type="text" name="item">
                             {% for item in all_items %}
-                                <option {% if item.id == user_item.item_id%}selected{% endif %}  value="{{ item.id }}">{{ item.name }}</option>
+                                <option {% if item.id == user_item.item_id%}selected{% endif %} required  value="{{ item.id }}">{{ item.name }}</option>
                             {% endfor %}
                     </select>
             </fieldset>
             <fieldset>
             <label for="size">Size: </label>
-            <input id="size" type="text" name="size" value="{{user_item.size}}">
+            <input id="size" type="text" required name="size" value="{{user_item.size}}">
         </fieldset>
         <fieldset>
             <label for="quantity">Quantity: </label>
-            <input id="quantity" type="number" name="quantity" value="{{user_item.quantity}}">
+            <input id="quantity" type="number" required name="quantity" value="{{user_item.quantity}}">
         </fieldset>
         <fieldset>
             <label for="expiration">Expiration Date: </label>
-            <input id="expiration" type="date" name="expiration" value="{{user_item.expiration}}">
+            <input id="expiration" type="date" required name="expiration" value="{{user_item.expiration|date:'Y-m-d'}}">
         </fieldset>
         <fieldset>
             <label for="category">Category: </label>
             <select id="category" type="text" name="category">
                 {% for category in all_categories %}
-                    <option {% if category.id == user_item.category_id%}selected{% endif %}  value="{{ user_item.category_id }}">{{ category.name }}</option>
+                    <option {% if category.id == user_item.category_id%}selected{% endif %} required value="{{ user_item.category_id }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
+            <input type="checkbox">
         </fieldset>
         <fieldset>
             <label for="location">Location: </label>
             <select id="location" type="text" name="location">
                 {% for location in all_locations %}
-                    <option {% if location.id == user_item.location_id%}selected{% endif %} value="{{ location.id }}">{{ location.name }}</option>
+                    <option {% if location.id == user_item.location_id%}selected{% endif %} required value="{{ location.id }}">{{ location.name }}</option>
                 {% endfor %}
             </select>
         </fieldset>
@@ -49,7 +50,7 @@
             <label for="store">Store: </label>
             <select id="store" type="text" name="store">
                 {% for store in all_stores %}
-                    <option {% if store.id == user_item.store_id%}selected{% endif %}  value="{{ store.id }}">{{ store.name }}</option>
+                    <option {% if store.id == user_item.store_id%}selected{% endif %} required value="{{ store.id }}">{{ store.name }}</option>
                 {% endfor %}
             </select>
         </fieldset>
@@ -65,7 +66,7 @@
             {% csrf_token %}
                 <fieldset>
                     <label for="item">Item: </label>
-                    <select id="item" type="text" name="item">
+                    <select id="item" required type="text" name="item">
                             {% for item in all_items %}
                                 <option  value="{{ item.id }}">{{ item.name }}</option>
                             {% endfor %}
@@ -80,24 +81,24 @@
                 <input type="hidden" name="new_item" value="True">
                 <fieldset>
                     <label for="name">Name: </label>
-                    <input id="name" type="text" name="name" value="{{item.name}}">
+                    <input id="name" type="text" required name="name" value="{{item.name}}">
                 </fieldset>
                 <fieldset>
                     <label for="description">Description: </label>
-                    <input id="description" type="text" name="description" value="{{item.description}}">
+                    <input id="description" type="text" required name="description" value="{{item.description}}">
                 </fieldset>
             {% endif %}
         <fieldset>
             <label for="size">Size: </label>
-            <input id="size" type="text" name="size" value="{{item.size}}">
+            <input id="size" type="text" required name="size" value="{{item.size}}">
         </fieldset>
         <fieldset>
             <label for="quantity">Quantity: </label>
-            <input id="quantity" type="number" name="quantity" value="{{item.quantity}}">
+            <input id="quantity" type="number" required name="quantity" value="{{item.quantity}}">
         </fieldset>
         <fieldset>
             <label for="expiration">Expiration Date: </label>
-            <input id="expiration" type="date" name="expiration" value="{{item.expiration}}">
+            <input id="expiration" type="date" required name="expiration" value="{{item.expiration}}">
         </fieldset>
         <fieldset>
             <label for="category">Category: </label>

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     <section id="user_item-details">
@@ -6,7 +7,15 @@
         <h5>{{ user_item.item.description }}</h5>
 
         <div>Size: {{ user_item.size }}</div>
-        <div>Quantity: {{ user_item.quantity }}</div>
+        <div>
+            <form action="{% url 'stokkapp:shopping_list_item' user_item.id %}" method="POST">
+            {% csrf_token %}
+                <input type="hidden" name="actual_method" value="PUT">
+                <button confirm>Update Quantity</button>
+                <input id="quantity" type="number" required name="quantity" value="{{user_item.quantity}}">
+                Quantity: {{ user_item.quantity }}
+            </form>
+        </div>
         <div>Expiration Date: {{ user_item.expiration }}</div>
         <div>Category: {{ user_item.category.name }}</div>
         <div>Located in the: {{ user_item.location.name }}</div>
@@ -23,4 +32,9 @@
         {% csrf_token %}
         <button>Edit</button>
     </form>
+    <form action="{% url 'stokkapp:shopping_list_item' user_item.id %}" method="GET">
+        {% csrf_token %}
+        <button confirm>Add to list</button>
+    </form>
+    
 {% endblock %}
