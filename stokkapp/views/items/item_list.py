@@ -15,8 +15,10 @@ def user_item_list(request):
             user_item.Item = Item.objects.filter(id=user_item.item_id)
 
         for zero_item in zero_items:
-            zero_item.Item = Item.objects.filter(id=user_item.item_id)
-        
+            try:
+                zero_item.Item = Item.objects.filter(id=user_item.item_id)
+            except:
+                pass
         template = 'items/item_list.html'
         context = {
             'all_items': all_items,
