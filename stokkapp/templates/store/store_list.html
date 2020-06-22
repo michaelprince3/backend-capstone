@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {% comment %} <link rel="stylesheet" href="{% static 'styles/item.css' %}" /> {% endcomment %}
+{% endblock %}
+
+{% block content %}
+    <h1>Stores</h1>
+
+    {% if one_store.id is not None %}
+    <form action="{% url 'stokkapp:storesedit' one_store.id%}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="PUT">
+            <button>Save Store</button>
+            <input id="name" type="text" required name="name" value="{{one_store.name}}">
+
+    </form>
+    {% else %}
+    <form action="{% url 'stokkapp:stores' %}" method="POST">
+        {% csrf_token %}
+            <button>New Store</button>
+            <input id="name" type="text" required name="name" placeholder="Add a new Store">
+
+    </form>
+    {% endif %}
+    <ol class="items">
+    <h3>Here is where you bought your stuff</h3>
+    {% for store in all_stores %}
+        <li class="item">
+            <div class="item__description">
+                {{store.name}}
+            </div>
+
+            <form action="{% url 'stokkapp:storesedit' store.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="actual_method" value="DELETE">
+            <button>Delete</button>
+            </form>
+            <form action="{% url 'stokkapp:storesedit' store.id %}" method="GET">
+            {% csrf_token %}
+            <button>Edit</button>
+            </form>
+        </li>
+    {% endfor %}
+        </ol>
+{% endblock %}

@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
-from stokkapp.models import Location
+from stokkapp.models import Store
+
 
 @login_required
-def location_list(request):
+def store_list(request):
     if request.method == 'GET':
-        all_locations = Location.objects.all()
+        all_stores = Store.objects.all()
 
-        template = 'location/location_list.html'
+        template = 'store/store_list.html'
         context = {
-            'all_locations': all_locations,
+            'all_stores': all_stores,
 
         }
 
@@ -20,23 +21,23 @@ def location_list(request):
 
         
 
-        new_location = Location.objects.create(
+        new_store = Store.objects.create(
             name=form_data['name'],
 
         )
         
-        return redirect(reverse('stokkapp:locations'))
+        return redirect(reverse('stokkapp:stores'))
 
 @login_required
-def location_modify(request, location_id):
-    all_locations = Location.objects.all()
-    one_location = Location.objects.get(pk=location_id)
+def store_modify(request, store_id):
+    all_stores = Store.objects.all()
+    one_store = Store.objects.get(pk=store_id)
     if request.method == 'GET':
     
-        template = 'location/location_list.html'
+        template = 'store/store_list.html'
         context = {
-            'all_locations': all_locations,
-            'one_location': one_location
+            'all_stores': all_stores,
+            'one_store': one_store
 
         }
 
@@ -48,17 +49,17 @@ def location_modify(request, location_id):
             "actual_method" in form_data
             and form_data["actual_method"] == "PUT"
         ):
-            one_location.name = form_data['name']
+            one_store.name = form_data['name']
             
-            one_location.save()
+            one_store.save()
             
-            return redirect(reverse('stokkapp:locations'))
+            return redirect(reverse('stokkapp:stores'))
         
         if ( 
             "actual_method" in form_data
             and form_data["actual_method"] == "DELETE"
             ):
             
-            one_location.delete()
+            one_store.delete()
             
-            return redirect(reverse('stokkapp:locations'))
+            return redirect(reverse('stokkapp:stores'))

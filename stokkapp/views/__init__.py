@@ -6,4 +6,5 @@ from .items.item_list import user_item_list
 from .items.item_detail import user_item_details
 from .shoppinglist.shopping_list import shopping_list
 from .shoppinglist.shopping_list_item import shopping_list_item
-from .location.location_list import location_list
+from .location.location_list import location_list, location_modify
+from .store.store_list import store_list, store_modify
