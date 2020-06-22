@@ -8,3 +8,4 @@ from .shoppinglist.shopping_list import shopping_list
 from .shoppinglist.shopping_list_item import shopping_list_item
 from .location.location_list import location_list, location_modify
 from .store.store_list import store_list, store_modify
+from .category.category_list import category_list, category_modify

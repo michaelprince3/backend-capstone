@@ -22,6 +22,8 @@ urlpatterns = [
     path('locations', location_list, name='locations'),
     path('locations/<int:location_id>', location_modify, name='locationsedit'),
     path('stores', store_list, name='stores'),
-    path('stores/<int:store_id>', store_modify, name='storesedit')
+    path('stores/<int:store_id>', store_modify, name='storesedit'),
+    path('categories', category_list, name='categories'),
+    path('categories/<int:category_id>', category_modify, name='categoriesedit')
 
 ]

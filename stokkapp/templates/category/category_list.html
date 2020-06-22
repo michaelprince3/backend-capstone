@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    {% comment %} <link rel="stylesheet" href="{% static 'styles/item.css' %}" /> {% endcomment %}
+{% endblock %}
+
+{% block content %}
+    <h1>Categories</h1>
+
+    {% if one_category.id is not None %}
+    <form action="{% url 'stokkapp:categoriesedit' one_category.id%}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="PUT">
+            <button>Save Category</button>
+            <input id="name" type="text" required name="name" value="{{one_category.name}}">
+
+    </form>
+    {% else %}
+    <form action="{% url 'stokkapp:categories' %}" method="POST">
+        {% csrf_token %}
+            <button>New Category</button>
+            <input id="name" type="text" required name="name" placeholder="Add a new Category">
+
+    </form>
+    {% endif %}
+    <ol class="items">
+    <h3>Here is what kind of stuff you have</h3>
+    {% for category in all_categories %}
+        <li class="item">
+            <div class="item__description">
+                {{category.name}}
+            </div>
+
+            <form action="{% url 'stokkapp:categoriesedit' category.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="actual_method" value="DELETE">
+            <button>Delete</button>
+            </form>
+            <form action="{% url 'stokkapp:categoriesedit' category.id %}" method="GET">
+            {% csrf_token %}
+            <button>Edit</button>
+            </form>
+        </li>
+    {% endfor %}
+        </ol>
+{% endblock %}
