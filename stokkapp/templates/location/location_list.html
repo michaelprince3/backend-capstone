@@ -22,12 +22,12 @@
                 {{location.name}}
             </div>
 
-            <form action="{% url 'stokkapp:locations' location.id %}" method="POST">
+            <form action="{% url 'stokkapp:locationsedit' location.id %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="DELETE">
             <button>Delete</button>
             </form>
-            <form action="{% url 'stokkapp:locations' location.id %}" method="GET">
+            <form action="{% url 'stokkapp:locationsedit' location.id %}" method="GET">
             {% csrf_token %}
             <button>Edit</button>
             </form>
