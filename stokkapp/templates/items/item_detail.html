@@ -22,7 +22,7 @@
         <div>Purchased at: {{ user_item.store.name }}</div>
     </section>
 
-    <form action="{% url 'stokkapp:detail' user_item.id %}" method="POST">
+    <form action="{% url 'stokkapp:detail' user_item.id %}" method="POST" onsubmit="return ConfirmDelete()">
         {% csrf_token %}
         <input type="hidden" name="actual_method" value="DELETE">
         <button>Delete</button>
@@ -32,9 +32,13 @@
         {% csrf_token %}
         <button>Edit</button>
     </form>
-    <form action="{% url 'stokkapp:shopping_list_item' user_item.id %}" method="GET">
+    {% comment %} <form action="{% url 'stokkapp:shopping_list_item' user_item.id %}" method="GET">
         {% csrf_token %}
         <button confirm>Add to list</button>
-    </form>
+    </form> {% endcomment %}
     
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/delete.js' %}"></script>
 {% endblock %}

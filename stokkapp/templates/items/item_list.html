@@ -8,12 +8,13 @@
 {% block content %}
     <h1>Items</h1>
 
-    <ol class="items">
     <a href="{% url 'stokkapp:user_item_form' %}">
     <button id="new_item">New Item</button>
     </a>
-    <h3>These Items are in Stokk</h3>
+    <h3 class="item_list_title">These Items are in Stokk</h3>
+    <ol class="items">
     {% for user_item in all_items %}
+        <div class="card" style="width: 16rem; height: 22rem; margin: 1rem;">
         <li class="item">
             <div class="item__description">
                 {{user_item.item.name}} size {{user_item.size}}
@@ -25,11 +26,13 @@
             <button id="detail--{{ user_item.id }}">Details</button>
             </a>
         </li>
+        </div>
     {% endfor %}
     </ol>
-    <h3>These items are out</h3>
-    <ol>
+    <h3 class="item_list_title">These items are out</h3>
+    <ol class="items">
     {% for zero_item in zero_items %}
+        <div class="card" style="width: 18rem;">
         <li class="item">
             <div class="item__description">
                 {{zero_item.item.name}} size {{zero_item.size}} quantity {{zero_item.quantity}}
@@ -41,6 +44,7 @@
             <button id="detail--{{ zero_item.id }}">Details</button>
             </a>
         </li>
+        </div>
     {% endfor %}
     </ol>
 {% endblock %}

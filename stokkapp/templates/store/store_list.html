@@ -32,9 +32,9 @@
                 {{store.name}}
             </div>
 
-            <form action="{% url 'stokkapp:storesedit' store.id %}" method="POST">
+            <form action="{% url 'stokkapp:storesedit' store.id %}" method="POST" onsubmit="return ConfirmDelete()">
             {% csrf_token %}
-            <input type="hidden" name="actual_method" value="DELETE">
+            <input type="hidden" name="actual_method" value="DELETE" >
             <button>Delete</button>
             </form>
             <form action="{% url 'stokkapp:storesedit' store.id %}" method="GET">
@@ -44,4 +44,8 @@
         </li>
     {% endfor %}
         </ol>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/delete.js' %}"></script>
 {% endblock %}
