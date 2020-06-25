@@ -79,21 +79,21 @@
                 <input class = "makeItNew" type = "hidden" value=false>
                 <input type="hidden" name="new_item" value="True">
                 <fieldset>
-                    <label for="name">Name: </label>
-                    <input id="name" type="text" required name="name" value="{{item.name}}">
+                    {% comment %} <label for="name">Name: </label> {% endcomment %}
+                    <input id="name" type="text" required name="name" value="{{item.name}}"placeholder="Item Name">
                 </fieldset>
                 <fieldset>
-                    <label for="description">Description: </label>
-                    <input id="description" type="text" required name="description" value="{{item.description}}">
+                    {% comment %} <label for="description">Description: </label> {% endcomment %}
+                    <textarea id="description" type="text" required name="description" value="{{item.description}}" placeholder="Item Description"></textarea>
                 </fieldset>
             {% endif %}
         <fieldset>
-            <label for="size">Size: </label>
-            <input id="size" type="text" required name="size" value="{{item.size}}">
+            {% comment %} <label for="size">Size: </label> {% endcomment %}
+            <input id="size" type="text" required name="size" value="{{item.size}}" placeholder="Item Size">
         </fieldset>
         <fieldset>
-            <label for="quantity">Quantity: </label>
-            <input id="quantity" type="number" required name="quantity" value="{{item.quantity}}">
+            {% comment %} <label for="quantity">Quantity: </label> {% endcomment %}
+            <input id="quantity" type="number" required name="quantity" value="{{item.quantity}}" placeholder="Item Quantity">
         </fieldset>
         <fieldset>
             <label for="expiration">Expiration Date: </label>

@@ -8,8 +8,12 @@ def get_user_item(user_item_id):
     return UserItem.objects.get(pk=user_item_id)
 
 
-def get_items():
-    return Item.objects.all()
+def get_items(request):
+    user_items = UserItem.objects.filter(user_id=request.user.id)
+    all_items = Item.objects.all()
+    for user_item in user_items:
+        all_items = all_items.exclude(id = user_item.item_id)
+    return all_items
 
 
 def get_locations():
@@ -27,7 +31,7 @@ def get_stores():
 @login_required
 def user_item_form(request):
     if request.method == 'GET':
-        items = get_items()
+        items = get_items(request)
         locations = get_locations()
         categories = get_categories()
         stores = get_stores()

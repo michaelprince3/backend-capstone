@@ -9,20 +9,23 @@ import time
 def user_item_list(request):
     if request.method == 'GET':
         all_items = UserItem.objects.filter(user_id=request.user.id).exclude(quantity=0)
-        zero_items = UserItem.objects.filter(user_id=request.user.id, quantity=0)
+        zero_items = UserItem.objects.filter(user_id=request.user.id, quantity=0).exclude(expiration__lte=datetime.datetime.now())
+        exp_items = UserItem.objects.filter(user_id=request.user.id, expiration__lte=datetime.datetime.now())
 
         for user_item in all_items:
             user_item.Item = Item.objects.filter(id=user_item.item_id)
 
         for zero_item in zero_items:
-            # try:
             zero_item.Item = Item.objects.filter(id=zero_item.item_id)
-            # except:
-            #     pass
+            
+        for exp_item in exp_items:
+            exp_item.Item =Item.objects.filter(id=exp_item.item_id)
+
         template = 'items/item_list.html'
         context = {
             'all_items': all_items,
-            'zero_items': zero_items
+            'zero_items': zero_items,
+            'exp_items': exp_items
         }
 
         return render(request, template, context)

@@ -16,14 +16,16 @@
     {% for user_item in all_items %}
         <div class="card" style="width: 16rem; height: 22rem; margin: 1rem;">
         <li class="item">
-            <div class="item__description">
-                {{user_item.item.name}} size {{user_item.size}}
+            <div class="image_size">
+                <img class="card-img-top" src={{user_item.item.image}} style=" max-height:100%;" >
             </div>
-            <div class="item__image">
-                <img src={{user_item.item.image}}>
-            </div>
-            <a class="item__name" href="{% url 'stokkapp:detail' user_item.id %}">
-            <button id="detail--{{ user_item.id }}">Details</button>
+            <h5 class="card-title">{{user_item.item.name}}</h5>
+            
+            <p class="card-text">{{user_item.item.description}}<p>
+            
+            
+            <a class="btn btn-primary" href="{% url 'stokkapp:detail' user_item.id %}">
+            Details
             </a>
         </li>
         </div>
@@ -32,7 +34,7 @@
     <h3 class="item_list_title">These items are out</h3>
     <ol class="items">
     {% for zero_item in zero_items %}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem; height: 22rem; margin: 1rem">
         <li class="item">
             <div class="item__description">
                 {{zero_item.item.name}} size {{zero_item.size}} quantity {{zero_item.quantity}}
@@ -42,6 +44,24 @@
             </div>
             <a class="item__name" href="{% url 'stokkapp:detail' zero_item.id %}">
             <button id="detail--{{ zero_item.id }}">Details</button>
+            </a>
+        </li>
+        </div>
+    {% endfor %}
+    </ol>
+        <h3 class="item_list_title">These items are expired</h3>
+    <ol class="items">
+    {% for exp_item in exp_items %}
+        <div class="card" style="width: 18rem; height: 22rem; margin: 1rem">
+        <li class="item">
+            <div class="item__description">
+                {{exp_item.item.name}} size {{exp_item.size}} quantity {{exp_item.quantity}}
+            </div>
+            <div class="item__image">
+                <img src={{exp_item.item.image}}>
+            </div>
+            <a class="item__name" href="{% url 'stokkapp:detail' exp_item.id %}">
+            <button id="detail--{{ exp_item.id }}">Details</button>
             </a>
         </li>
         </div>

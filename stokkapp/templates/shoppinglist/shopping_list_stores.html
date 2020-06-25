@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/shopping_list.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="shopping_list">
+    <h1>{{name}}'s shopping list</h1>
+    <div class="card" style="width: 50rem;">
+    <ul class="shopping_list_item">
+    {% for store in stores %}
+        <h3> {{store.name}} </h3>
+        {% for exp_item in exp_items %}
+            {% if exp_item.store_id == store.id %}
+                <li class="item">
+                    <div class="item__description">
+                        {{exp_item.item.name}}
+                    </div>
+                </li>
+            {% endif %}
+        {% endfor %}
+    
+        {% for list_item in user_list_items %}
+            {% if list_item.store_id == store.id %}
+                <li class="item">
+                    <div class="item__description">
+                        {{list_item.item.name}}
+                    </div>
+                </li>
+            {% endif %}
+        {% empty %}
+            <div>You have nothing to shop for today!</div>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+    </div>
+    </div>
+{% endblock %}

@@ -2,13 +2,24 @@
 {% load static %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'shopping_list.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/shopping_list.css' %}" />
 {% endblock %}
 
 {% block content %}
+<div class="shopping_list">
     <h1>{{name}}'s shopping list</h1>
-
-    <ol class="shopping_list">
+    <a href="{% url 'stokkapp:shoppingstore' %}">
+    <button id="new_item">Organize By Store</button>
+    </a>
+    <div class="card" style="width: 50rem;">
+    <ul class="shopping_list_item">
+    {% for exp_item in exp_items %}
+        <li class="item">
+            <div class="item__description">
+                {{exp_item.item.name}}
+            </div>
+        </li>
+    {% endfor %}
     {% for list_item in user_list_items %}
         <li class="item">
             <div class="item__description">
@@ -18,5 +29,7 @@
     {% empty %}
         <div>You have nothing to shop for today!</div>
     {% endfor %}
-    </ol>
+    </ul>
+    </div>
+    </div>
 {% endblock %}

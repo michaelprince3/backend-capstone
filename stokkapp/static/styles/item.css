@@ -15,7 +15,10 @@
     /* width: 200px; */
     margin: 20px;
 }
-
+.image_size {
+    height: 10rem;
+    width: 100%;
+}
 .item_list_title {
     display: flex;
     flex-direction: column;
@@ -26,6 +29,7 @@
 } */
 .item__description {
     width: 200px;
+    
 }
 
 /* .item__image {
