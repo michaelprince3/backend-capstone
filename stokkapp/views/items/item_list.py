@@ -8,7 +8,7 @@ import time
 @login_required
 def user_item_list(request):
     if request.method == 'GET':
-        all_items = UserItem.objects.filter(user_id=request.user.id).exclude(quantity=0)
+        all_items = UserItem.objects.filter(user_id=request.user.id).exclude(quantity=0).exclude(expiration__lte=datetime.datetime.now())
         zero_items = UserItem.objects.filter(user_id=request.user.id, quantity=0).exclude(expiration__lte=datetime.datetime.now())
         exp_items = UserItem.objects.filter(user_id=request.user.id, expiration__lte=datetime.datetime.now())
 
