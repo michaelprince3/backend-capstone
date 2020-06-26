@@ -25,12 +25,12 @@
     <form action="{% url 'stokkapp:detail' user_item.id %}" method="POST" onsubmit="return ConfirmDelete()">
         {% csrf_token %}
         <input type="hidden" name="actual_method" value="DELETE">
-        <button>Delete</button>
+        <button type="button" class="btn btn-secondary">Delete</button>
     </form>
 
     <form action="{% url 'stokkapp:user_item_edit_form' user_item.id %}" method="GET">
         {% csrf_token %}
-        <button>Edit</button>
+        <button type="button" class="btn btn-secondary">Edit</button>
     </form>
     {% comment %} <form action="{% url 'stokkapp:shopping_list_item' user_item.id %}" method="GET">
         {% csrf_token %}

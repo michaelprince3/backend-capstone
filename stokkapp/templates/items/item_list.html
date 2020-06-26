@@ -20,7 +20,6 @@
                 <div class="image_size">
                     <img class="card-img-top" src="{% static user_item.item.image%}" style="width: 100%;" >
                     <div clsss="card-image-overlay">
-                    {{user_item.item.image}}
                         <h5 class="card-title" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">{{user_item.item.name}}  </h5>
                     </div>
                 </div> 
@@ -29,7 +28,7 @@
                         <p class="card-text">{{user_item.item.description}}<p>
                     </div>
                     
-                    <a class="btn btn-primary" href="{% url 'stokkapp:detail' user_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
+                    <a type="button" class="btn btn-warning" href="{% url 'stokkapp:detail' user_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
                     Details
                     </a>
                 <div>
@@ -53,7 +52,7 @@
                     <p class="card-text">{{zero_item.item.description}}<p>
                 </div>
             </div>
-            <a class="btn btn-primary" href="{% url 'stokkapp:detail' zero_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
+            <a type="button" class="btn btn-secondary" href="{% url 'stokkapp:detail' zero_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
                 Details
             </a>
         </li>
@@ -76,9 +75,9 @@
                     <p class="card-text">{{exp_item.item.description}}<p>
                 </div>
             </div>
-            <a class="btn btn-primary" href="{% url 'stokkapp:detail' exp_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
+            <button type="button" class="btn btn-secondary" href="{% url 'stokkapp:detail' exp_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
                 Details
-            </a>
+            </button>
 
         {% comment %} <img class="addicon" <img src="{% static "image/icons8.png"%}"height="100px"/> {% endcomment %}
         <a href="{% url 'stokkapp:user_item_form' %}">

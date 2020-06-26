@@ -7,21 +7,21 @@
 
 {% block content %}
 <div class="shopping_list">
-    <h1>{{name}}'s shopping list</h1>
+    <div class="card" style="width: 50rem; margin-top: 5rem;">
+    <h1 class="card-title">{{name}}'s shopping list</h1>
     <a href="{% url 'stokkapp:shoppingstore' %}">
-    <button id="new_item">Organize By Store</button>
+    <button type="button" class="btn btn-secondary" id="new_item">Organize By Store</button>
     </a>
-    <div class="card" style="width: 50rem;">
     <ul class="shopping_list_item">
     {% for exp_item in exp_items %}
-        <li class="item">
+        <li class="list-group-item">
             <div class="item__description">
                 {{exp_item.item.name}}
             </div>
         </li>
     {% endfor %}
     {% for list_item in user_list_items %}
-        <li class="item">
+        <li class="list-group-item">
             <div class="item__description">
                 {{list_item.item.name}}
             </div>
