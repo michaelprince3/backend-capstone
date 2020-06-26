@@ -6,44 +6,55 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Items</h1>
+    {% comment %} <h1>Items</h1>
 
     <a href="{% url 'stokkapp:user_item_form' %}">
     <button id="new_item">New Item</button>
-    </a>
+    </a> {% endcomment %}
+    <div class="item_container">
     <h3 class="item_list_title">These Items are in Stokk</h3>
     <ol class="items">
     {% for user_item in all_items %}
-        <div class="card" style="width: 16rem; height: 22rem; margin: 1rem;">
-        <li class="item">
-            <div class="image_size">
-                <img class="card-img-top" src={{user_item.item.image}} style=" max-height:100%;" >
-            </div>
-            <h5 class="card-title">{{user_item.item.name}}</h5>
-            
-            <p class="card-text">{{user_item.item.description}}<p>
-            
-            
-            <a class="btn btn-primary" href="{% url 'stokkapp:detail' user_item.id %}">
-            Details
-            </a>
-        </li>
+        <div class="card" style="width: 16rem; height: 25rem; margin: .5rem;">
+            <li class="item">
+                <div class="image_size">
+                    <img class="card-img-top" src="{% static user_item.item.image%}" style="width: 100%;" >
+                    <div clsss="card-image-overlay">
+                    {{user_item.item.image}}
+                        <h5 class="card-title" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">{{user_item.item.name}}  </h5>
+                    </div>
+                </div> 
+                <div class="card-body" style="width: 100%;" >
+                    <div class="description">
+                        <p class="card-text">{{user_item.item.description}}<p>
+                    </div>
+                    
+                    <a class="btn btn-primary" href="{% url 'stokkapp:detail' user_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
+                    Details
+                    </a>
+                <div>
+            </li>
         </div>
     {% endfor %}
     </ol>
     <h3 class="item_list_title">These items are out</h3>
     <ol class="items">
     {% for zero_item in zero_items %}
-        <div class="card" style="width: 18rem; height: 22rem; margin: 1rem">
+        <div class="card" style="width: 16rem; height: 25rem; margin: .5rem">
         <li class="item">
-            <div class="item__description">
-                {{zero_item.item.name}} size {{zero_item.size}} quantity {{zero_item.quantity}}
+        <div class="image_size">
+                    <img class="card-img-top" src="{% static zero_item.item.image%}" style="width: 100%;" >
+                    <div clsss="card-image-overlay">
+                        <h5 class="card-title" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">{{zero_item.item.name}}  </h5>
+                    </div>
+                </div>
+            <div class="card-body" style="width: 100%;" >
+                <div class="description">
+                    <p class="card-text">{{zero_item.item.description}}<p>
+                </div>
             </div>
-            <div class="item__image">
-                <img src={{zero_item.item.image}}>
-            </div>
-            <a class="item__name" href="{% url 'stokkapp:detail' zero_item.id %}">
-            <button id="detail--{{ zero_item.id }}">Details</button>
+            <a class="btn btn-primary" href="{% url 'stokkapp:detail' zero_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
+                Details
             </a>
         </li>
         </div>
@@ -54,18 +65,29 @@
     {% for exp_item in exp_items %}
         <div class="card" style="width: 18rem; height: 22rem; margin: 1rem">
         <li class="item">
-            <div class="item__description">
-                {{exp_item.item.name}} size {{exp_item.size}} quantity {{exp_item.quantity}}
+        <div class="image_size">
+                    <img class="card-img-top" src="{% static exp_item.item.image%}" style="width: 100%;" >
+                    <div clsss="card-image-overlay">
+                        <h5 class="card-title" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">{{exp_item.item.name}}  </h5>
+                    </div>
+                </div>
+            <div class="card-body" style="width: 100%;" >
+                <div class="description">
+                    <p class="card-text">{{exp_item.item.description}}<p>
+                </div>
             </div>
-            <div class="item__image">
-                <img src={{exp_item.item.image}}>
-            </div>
-            <a class="item__name" href="{% url 'stokkapp:detail' exp_item.id %}">
-            <button id="detail--{{ exp_item.id }}">Details</button>
+            <a class="btn btn-primary" href="{% url 'stokkapp:detail' exp_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
+                Details
             </a>
-        </li>
+
+        {% comment %} <img class="addicon" <img src="{% static "image/icons8.png"%}"height="100px"/> {% endcomment %}
+        <a href="{% url 'stokkapp:user_item_form' %}">
+        <img class="addicon" <img src="{% static "image/icons8.png"%}" height="96px"/>
+        </a>
+
         </div>
     {% endfor %}
     </ol>
+    </div>
 {% endblock %}
 

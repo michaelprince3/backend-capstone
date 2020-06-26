@@ -4,6 +4,27 @@
     justify-content: center;
     flex-wrap: wrap;
     margin: 10px;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    padding: 0%;
+}
+
+.item_container {
+    margin-bottom: 10rem;
+    
+}
+
+.description {
+    overflow: hidden;
+    /* overflow-x: hidden; */
+    height: 9rem;
+    width: 100%;
+}
+
+.addicon {
+    position: fixed;
+    bottom: 2%;
+    left: 85%;
 }
 
 .item {
@@ -13,10 +34,12 @@
     justify-content: center;
     align-content: space-between;
     /* width: 200px; */
-    margin: 20px;
+    /* margin: 20px; */
 }
 .image_size {
-    height: 10rem;
+    position: relative;
+    text-align: center;
+    /* height: 11rem; */
     width: 100%;
 }
 .item_list_title {

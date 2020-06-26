@@ -1,0 +1,12 @@
+.button-div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 50%;
+    margin-left: 23rem;
+
+}
+
+.item__description {
+    width: 15rem;
+}

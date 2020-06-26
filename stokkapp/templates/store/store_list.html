@@ -2,48 +2,59 @@
 {% load static %}
 
 {% block css %}
-    {% comment %} <link rel="stylesheet" href="{% static 'styles/item.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'styles/stores.css' %}" />
 {% endblock %}
 
 {% block content %}
-    <h1>Stores</h1>
 
+    <h1>Stores</h1>
+    <div class="card" style="width: 60%; margin: 10rem; margin-top: 5rem;">
     {% if one_store.id is not None %}
     <form action="{% url 'stokkapp:storesedit' one_store.id%}" method="POST">
         {% csrf_token %}
-        <input type="hidden" name="actual_method" value="PUT">
-            <button>Save Store</button>
-            <input id="name" type="text" required name="name" value="{{one_store.name}}">
-
+        <div class="input-group mb-3">
+            <input type="hidden" name="actual_method" value="PUT">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Save Store</button>
+            </div>
+            <input type="text" id="name" name="name" class="form-control" required placeholder="" aria-label="Add a new Store" aria-describedby="button-addon1" value="{{one_store.name}}">
+        </div>
     </form>
     {% else %}
-    <form action="{% url 'stokkapp:stores' %}" method="POST">
-        {% csrf_token %}
-            <button>New Store</button>
-            <input id="name" type="text" required name="name" placeholder="Add a new Store">
 
-    </form>
+        <form action="{% url 'stokkapp:stores' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon1">New Store</button>
+            </div>
+            <input type="text" id="name" name="name" class="form-control" required placeholder="" aria-label="Add a new Store" aria-describedby="button-addon1">
+        </div>
+        </form>
+
     {% endif %}
     <ol class="items">
     <h3>Here is where you bought your stuff</h3>
     {% for store in all_stores %}
-        <li class="item">
+        <li class="list-group-item" style="display:flex; flex-direction: row; align-content: space-between;">
             <div class="item__description">
                 {{store.name}}
             </div>
-
+        <div class="button-div">
             <form action="{% url 'stokkapp:storesedit' store.id %}" method="POST" onsubmit="return ConfirmDelete()">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="DELETE" >
-            <button>Delete</button>
+            <button type="button" class="btn btn-danger">Delete</button>
             </form>
             <form action="{% url 'stokkapp:storesedit' store.id %}" method="GET">
             {% csrf_token %}
-            <button>Edit</button>
+            <button type="button" class="btn btn-secondary">Edit</button>
             </form>
+        </div>
         </li>
     {% endfor %}
         </ol>
+        </div>
 {% endblock %}
 
 {% block scripts %}
