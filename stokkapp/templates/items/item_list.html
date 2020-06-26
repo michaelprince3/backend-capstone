@@ -15,7 +15,8 @@
     <h3 class="item_list_title">These Items are in Stokk</h3>
     <ol class="items">
     {% for user_item in all_items %}
-        <div class="card" style="width: 16rem; height: 25rem; margin: .5rem;">
+    {% comment %} <div class="shadow p-3 mb-5 bg-white rounded" style="padding: 0%;"> {% endcomment %}
+        <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 16rem; height: 25rem; margin: .5rem;">
             <li class="item">
                 <div class="image_size">
                     <img class="card-img-top" src="{% static user_item.item.image%}" style="width: 100%;" >
@@ -34,12 +35,13 @@
                 <div>
             </li>
         </div>
+    {% comment %} </div> {% endcomment %}
     {% endfor %}
     </ol>
     <h3 class="item_list_title">These items are out</h3>
     <ol class="items">
     {% for zero_item in zero_items %}
-        <div class="card" style="width: 16rem; height: 25rem; margin: .5rem">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 16rem; height: 25rem; margin: .5rem">
         <li class="item">
         <div class="image_size">
                     <img class="card-img-top" src="{% static zero_item.item.image%}" style="width: 100%;" >
@@ -75,17 +77,17 @@
                     <p class="card-text">{{exp_item.item.description}}<p>
                 </div>
             </div>
-            <button type="button" class="btn btn-secondary" href="{% url 'stokkapp:detail' exp_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
+            <a type="button" class="btn btn-secondary" href="{% url 'stokkapp:detail' exp_item.id %}" style="position:absolute; bottom: 5px; left: 93px;">
                 Details
-            </button>
+            </a>
+        </div>
+    {% endfor %}
 
         {% comment %} <img class="addicon" <img src="{% static "image/icons8.png"%}"height="100px"/> {% endcomment %}
         <a href="{% url 'stokkapp:user_item_form' %}">
         <img class="addicon" <img src="{% static "image/icons8.png"%}" height="96px"/>
         </a>
 
-        </div>
-    {% endfor %}
     </ol>
     </div>
 {% endblock %}

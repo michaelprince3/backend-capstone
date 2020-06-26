@@ -2,46 +2,61 @@
 {% load static %}
 
 {% block css %}
-    {% comment %} <link rel="stylesheet" href="{% static 'styles/item.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'styles/stores.css' %}" />
 {% endblock %}
 
 {% block content %}
-    <h1>Locations</h1>
 
+    <h1>Stores</h1>
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 60%; margin: 10rem; margin-top: 5rem;">
     {% if one_location.id is not None %}
     <form action="{% url 'stokkapp:locationsedit' one_location.id%}" method="POST">
         {% csrf_token %}
-        <input type="hidden" name="actual_method" value="PUT">
-            <button>Save Location</button>
-            <input id="name" type="text" required name="name" value="{{one_location.name}}">
-
+        <div class="input-group mb-3">
+            <input type="hidden" name="actual_method" value="PUT">
+            <div class="input-group-prepend">
+                <button class="btn btn-secondary" type="submit" id="button-addon1">Save Location</button>
+            </div>
+            <input type="text" id="name" name="name" class="form-control" required placeholder="" aria-label="Add a new Location" aria-describedby="button-addon1" value="{{one_location.name}}">
+        </div>
     </form>
     {% else %}
-    <form action="{% url 'stokkapp:locations' %}" method="POST">
-        {% csrf_token %}
-            <button>New Location</button>
-            <input id="name" type="text" required name="name" placeholder="Add a new Location">
 
-    </form>
+        <form action="{% url 'stokkapp:locations' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon1">New Location</button>
+            </div>
+            <input type="text" id="name" name="name" class="form-control" required placeholder="" aria-label="Add a new Location" aria-describedby="button-addon1">
+        </div>
+        </form>
+
     {% endif %}
     <ol class="items">
     <h3>Here is where you can keep your stuff</h3>
     {% for location in all_locations %}
-        <li class="item">
+        <li class="list-group-item" style="display:flex; flex-direction: row; align-content: space-between;">
             <div class="item__description">
                 {{location.name}}
             </div>
-
-            <form action="{% url 'stokkapp:locationsedit' location.id %}" method="POST">
+        <div class="button-div">
+            <form action="{% url 'stokkapp:locationsedit' location.id %}" method="POST" onsubmit="return ConfirmDelete()">
             {% csrf_token %}
-            <input type="hidden" name="actual_method" value="DELETE">
-            <button>Delete</button>
+            <input type="hidden" name="actual_method" value="DELETE" >
+            <button type="submit" class="btn btn-danger">Delete</button>
             </form>
             <form action="{% url 'stokkapp:locationsedit' location.id %}" method="GET">
             {% csrf_token %}
-            <button>Edit</button>
+            <button type="submit" class="btn btn-secondary">Edit</button>
             </form>
+        </div>
         </li>
     {% endfor %}
         </ol>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'scripts/delete.js' %}"></script>
 {% endblock %}

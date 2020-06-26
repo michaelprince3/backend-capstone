@@ -9,130 +9,181 @@
     
         {% if user_item.id is not None %}
         <div class="form-container">
-        <div class="card" style="width: 60%;">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 40rem; height: 40rem; margin-top: 10rem; margin-left:20%;">
         <h2>Edit Item</h2>
             <form action="{% url 'stokkapp:detail' user_item.id %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="PUT">
-            <fieldset>
-                    <label for="item">Item: </label>
-                    <select id="item" type="text" name="item">
-                            {% for item in all_items %}
-                                <option {% if item.id == user_item.item_id%}selected{% endif %} required  value="{{ item.id }}">{{ item.name }}</option>
-                            {% endfor %}
-                    </select>
-            </fieldset>
-            <fieldset>
-            <label for="size">Size: </label>
-            <input id="size" type="text" required name="size" value="{{user_item.size}}">
-        </fieldset>
-        <fieldset>
-            <label for="quantity">Quantity: </label>
-            <input id="quantity" type="number" required name="quantity" value="{{user_item.quantity}}">
-        </fieldset>
-        <fieldset>
-            <label for="expiration">Expiration Date: </label>
-            <input id="expiration" type="date" required name="expiration" value="{{user_item.expiration|date:'Y-m-d'}}">
-        </fieldset>
-        <fieldset>
-            <label for="category">Category: </label>
-            <select id="category" type="text" name="category">
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Item</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" name="item">
+                    {% for item in all_items %}
+                        <option  {% if item.id == user_item.item_id%}selected{% endif %} required value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+        <div class="input-group mb-3" style="margin-top: 1rem;">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Item Size</span>
+            </div>
+            <input id="size" type="text" required name="size"  class="form-control" aria-label="size" aria-describedby="basic-addon1" value="{{user_item.size}}">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Item Quantity</span>
+            </div>
+            <input id="quantity" type="number" required name="quantity"  class="form-control" aria-label="quantity" aria-describedby="basic-addon1" value="{{user_item.quantity}}">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Expiration Date</span>
+            </div>
+            <input id="expiration" type="date" required name="expiration"  class="form-control" aria-label="quantity" aria-describedby="basic-addon1" value="{{user_item.expiration|date:'Y-m-d'}}">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Item Category</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="category">
                 {% for category in all_categories %}
-                    <option {% if category.id == user_item.category_id%}selected{% endif %} required value="{{category.id }}">{{ category.name }}</option>
+                    <option {% if category.id == user_item.category_id%}selected{% endif %} required value="{{ category.id }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
-        </fieldset>
-        <fieldset>
-            <label for="location">Location: </label>
-            <select id="location" type="text" name="location">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Item Location</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="location">
                 {% for location in all_locations %}
                     <option {% if location.id == user_item.location_id%}selected{% endif %} required value="{{ location.id }}">{{ location.name }}</option>
                 {% endfor %}
             </select>
-        </fieldset>
-        <fieldset>
-            <label for="store">Store: </label>
-            <select id="store" type="text" name="store">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Item Store</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="store">
                 {% for store in all_stores %}
                     <option {% if store.id == user_item.store_id%}selected{% endif %} required value="{{ store.id }}">{{ store.name }}</option>
                 {% endfor %}
             </select>
-        </fieldset>
-        <input type="submit" value="Submit" />
+        </div>
+
+        <input type="submit" class="btn btn-secondary" value="Submit" />
         </form>
         </div>
         </div>
         {% else %} 
-        <div class="card" style="width: 60%;">   
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 40rem; height: 40rem; margin-top: 10rem; margin-left:20%;">   
             {% if all_items is not None  %}
             
             <h1>Add an Item</h1>
             <a href="{% url 'stokkapp:new_user_item_form' %}">
-                <button id="add_item" type="button" class="btn btn-secondary">Add Item</button>
+                <button id="add_item" type="button" class="btn btn-secondary" style="margin: 1rem; margin-left: 0%;">Add Item</button>
             </a>
             <form class = "item_form" action="{% url 'stokkapp:user_item_list'  %}" method="post">
             {% csrf_token %}
-                <fieldset>
-                    <label for="item">Item: </label>
-                    <select id="item" required type="text" name="item">
-                            {% for item in all_items %}
-                                <option  value="{{ item.id }}">{{ item.name }}</option>
-                            {% endfor %}
-                    </select>
-                </fieldset>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Item</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" name="item">
+                    {% for item in all_items %}
+                        <option  value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             {% else %}
                 <h1>Add an Item</h1>
                 <form class = "item_form" action="{% url 'stokkapp:user_item_list'  %}" method="post">
                 {% csrf_token %}
                 <h4>Add a new Item</h4>
-                <input class = "makeItNew" type = "hidden" value=false>
+                {% comment %} <input class = "makeItNew" type = "hidden" value=false> {% endcomment %}
                 <input type="hidden" name="new_item" value="True">
-                <fieldset>
-                    {% comment %} <label for="name">Name: </label> {% endcomment %}
-                    <input id="name" type="text" required name="name" value="{{item.name}}"placeholder="Item Name">
-                </fieldset>
-                <fieldset>
-                    {% comment %} <label for="description">Description: </label> {% endcomment %}
-                    <textarea id="description" type="text" required name="description" value="{{item.description}}" placeholder="Item Description"></textarea>
-                </fieldset>
+                
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Item Name</span>
+                    </div>
+                    <input id="name" type="text" required name="name" class="form-control" aria-label="name" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Item Description</span>
+                    </div>
+                    <textarea id="description" required name="description" class="form-control" aria-label="With textarea"></textarea>
+                </div>
+
             {% endif %}
-        <fieldset>
-            {% comment %} <label for="size">Size: </label> {% endcomment %}
-            <input id="size" type="text" required name="size" value="{{item.size}}" placeholder="Item Size">
-        </fieldset>
-        <fieldset>
-            {% comment %} <label for="quantity">Quantity: </label> {% endcomment %}
-            <input id="quantity" type="number" required name="quantity" value="{{item.quantity}}" placeholder="Item Quantity">
-        </fieldset>
-        <fieldset>
-            <label for="expiration">Expiration Date: </label>
-            <input id="expiration" type="date" required name="expiration" value="{{item.expiration}}">
-        </fieldset>
-        <fieldset>
-            <label for="category">Category: </label>
-            <select id="category" type="text" name="category">
+
+        <div class="input-group mb-3" style="margin-top: 1rem;">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Item Size</span>
+            </div>
+            <input id="size" type="text" required name="size"  class="form-control" aria-label="size" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Item Quantity</span>
+            </div>
+            <input id="quantity" type="number" required name="quantity"  class="form-control" aria-label="quantity" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Expiration Date</span>
+            </div>
+            <input id="expiration" type="date" required name="expiration"  class="form-control" aria-label="quantity" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Item Category</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="category">
                 {% for category in all_categories %}
                     <option {%  value="{{ category.id }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
-        </fieldset>
-        <fieldset>
-            <label for="location">Location: </label>
-            <select id="location" type="text" name="location">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Item Location</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="location">
                 {% for location in all_locations %}
                     <option {%  value="{{ location.id }}">{{ location.name }}</option>
                 {% endfor %}
             </select>
-        </fieldset>
-        <fieldset>
-            <label for="store">Store: </label>
-            <select id="store" type="text" name="store">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Item Store</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" name="store">
                 {% for store in all_stores %}
                     <option {%  value="{{ store.id }}">{{ store.name }}</option>
                 {% endfor %}
             </select>
-        </fieldset>
-        <input type="submit" value="Submit" />
+        </div>
+
+        <input type="submit" class="btn btn-secondary" value="Submit" />
     </form>
     {% endif %}
     </div>

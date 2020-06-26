@@ -1,37 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/detail.css' %}" />
+{% endblock %}
+
 {% block content %}
+<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 40rem; height: 40rem; margin-top: 10rem; margin-left:20%;">
     <section id="user_item-details">
         <h1>{{ user_item.item.name }}</h1>
         <h5>{{ user_item.item.description }}</h5>
 
-        <div>Size: {{ user_item.size }}</div>
         <div>
             <form action="{% url 'stokkapp:shopping_list_item' user_item.id %}" method="POST">
             {% csrf_token %}
                 <input type="hidden" name="actual_method" value="PUT">
-                <button confirm>Update Quantity</button>
-                <input id="quantity" type="number" required name="quantity" value="{{user_item.quantity}}">
+                {% comment %} <button>Update Quantity</button>
+                <input id="quantity" type="number" required name="quantity" value="{{user_item.quantity}}"> {% endcomment %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Update Quantity</button>
+                </div>
+                <input type="number" required name="quantity"class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="{{user_item.quantity}}">
+            </div>
                 Quantity: {{ user_item.quantity }}
             </form>
         </div>
+        <div>Size: {{ user_item.size }}</div>
         <div>Expiration Date: {{ user_item.expiration }}</div>
         <div>Category: {{ user_item.category.name }}</div>
         <div>Located in the: {{ user_item.location.name }}</div>
         <div>Purchased at: {{ user_item.store.name }}</div>
     </section>
 
-    <form action="{% url 'stokkapp:detail' user_item.id %}" method="POST" onsubmit="return ConfirmDelete()">
+    <div class="button-div">
+        <form action="{% url 'stokkapp:detail' user_item.id %}" method="POST" onsubmit="return ConfirmDelete()">
         {% csrf_token %}
-        <input type="hidden" name="actual_method" value="DELETE">
-        <button type="button" class="btn btn-secondary">Delete</button>
-    </form>
+            <input type="hidden" name="actual_method" value="DELETE">
+            <button type="submit" class="btn btn-secondary" style="margin: 1rem; margin-left: 0%; height: 40px; width: 75px;">Delete</button>
+        </form>
 
-    <form action="{% url 'stokkapp:user_item_edit_form' user_item.id %}" method="GET">
+        <form action="{% url 'stokkapp:user_item_edit_form' user_item.id %}" method="GET">
         {% csrf_token %}
-        <button type="button" class="btn btn-secondary">Edit</button>
-    </form>
+            <button type="submit" class="btn btn-secondary" style="margin: 1rem; margin-left: 0%; height: 40px; width: 75px;">Edit</button>
+        </form>
+    </div>
+    </div>
     {% comment %} <form action="{% url 'stokkapp:shopping_list_item' user_item.id %}" method="GET">
         {% csrf_token %}
         <button confirm>Add to list</button>

@@ -7,7 +7,7 @@
 
 {% block content %}
         <h1>Category</h1>
-    <div class="card" style="width: 60%; margin: 10rem; margin-top: 5rem;">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 60%; margin: 10rem; margin-top: 5rem;">
     {% if one_category.id is not None %}
     <form action="{% url 'stokkapp:categoriesedit' one_category.id%}" method="POST">
         {% csrf_token %}
@@ -43,11 +43,11 @@
             <form action="{% url 'stokkapp:categoriesedit' category.id %}" method="POST" onsubmit="return ConfirmDelete()">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="DELETE" >
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
             </form>
             <form action="{% url 'stokkapp:categoriesedit' category.id %}" method="GET">
             {% csrf_token %}
-            <button type="button" class="btn btn-secondary">Edit</button>
+            <button type="submit" class="btn btn-secondary">Edit</button>
             </form>
         </div>
         </li>

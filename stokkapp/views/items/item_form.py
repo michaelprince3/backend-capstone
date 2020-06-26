@@ -68,7 +68,7 @@ def new_user_item_form(request):
 def user_item_edit_form(request, user_item_id):
     if request.method == 'GET':
         user_item = get_user_item(user_item_id)
-        items = get_items()
+        items = Item.objects.all()
         locations = get_locations()
         categories = get_categories()
         stores = get_stores()

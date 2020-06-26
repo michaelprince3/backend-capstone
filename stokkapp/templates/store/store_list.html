@@ -8,7 +8,7 @@
 {% block content %}
 
     <h1>Stores</h1>
-    <div class="card" style="width: 60%; margin: 10rem; margin-top: 5rem;">
+    <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 60%; margin: 10rem; margin-top: 5rem;">
     {% if one_store.id is not None %}
     <form action="{% url 'stokkapp:storesedit' one_store.id%}" method="POST">
         {% csrf_token %}
@@ -44,11 +44,11 @@
             <form action="{% url 'stokkapp:storesedit' store.id %}" method="POST" onsubmit="return ConfirmDelete()">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="DELETE" >
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
             </form>
             <form action="{% url 'stokkapp:storesedit' store.id %}" method="GET">
             {% csrf_token %}
-            <button type="button" class="btn btn-secondary">Edit</button>
+            <button type="submit" class="btn btn-secondary">Edit</button>
             </form>
         </div>
         </li>
